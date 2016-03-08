@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-4">
+    <h1>Resultat</h1>
+      <% @users.each do |user| %>
+        <p ><a href="/pages/<%= user.id %>"><%= user.name %></a></p>
+      <% end %>
+    <a href="/">Retour</a>
+  </div>
+</div>

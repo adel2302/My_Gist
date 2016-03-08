@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h1><%= @user.name %>'s Page</h1>
+  </div>
+</div>
+<table>
+  <tbody>
+    <% @gists.each do |gist| %>
+      <tr>
+        <td><%= link_to gist.title, edit_gist_path(@user)  %></td>
+        <td> Submitted <%= time_ago_in_words(gist.created_at) %> by <%= gist.user.name %> </td>
+        <td><%= link_to 'Show', gist %></td>
+        <td><%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

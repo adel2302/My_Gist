@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h1>welcome <%= current_user.name %></h1>
+  </div>
+  <div class="col-md-4 text-right">
+    <%= link_to 'New Gist', new_gist_path, class: "btn btn-default" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <%= form_tag "/result", method: :post  do %>
+      <%= autocomplete_field_tag "query",  params[:query],autocomplete_user_name_gists_path, :size => 30 %>
+      <%= submit_tag "Search", class:"button radius"%>
+    <% end %>
+  </div>
+</div>
+<table>
+  <tbody>
+    <% @gists.each do |gist| %>
+      <tr>
+        <td><%= link_to gist.title, edit_gist_path(gist)  %></td>
+        <td> Submitted <%= time_ago_in_words(gist.created_at) %> by <%= gist.user.name %> </td>
+        <td><%= link_to 'Show', gist %></td>
+        <td><%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
